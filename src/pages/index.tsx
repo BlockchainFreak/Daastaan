@@ -1,9 +1,8 @@
 import Image from 'next/image'
-import { Inter } from 'next/font/google'
 import Hero from '@/components/Hero'
 import Carousel from "@/components/Carousel"
+import FeatureSection from '@/components/FeatureSection'
 
-const inter = Inter({ subsets: ['latin'] })
 
 // Colors:
 // Primary: deep blue, radiant orange, bright pink
@@ -16,10 +15,11 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
   return (
     <main
-      className={`flex min-h-screen flex-col justify-center bg-gradient-to-tr from-indigo-900 via-purple-500 to-pink-300`}
+      className={`flex min-h-screen flex-col justify-center`}
     >
       <Hero />
-      <Carousel />
+      <FeatureSection />
+      {/* <Carousel /> */}
     </main>
   )
 }

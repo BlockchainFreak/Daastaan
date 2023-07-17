@@ -21,7 +21,7 @@ const useStyles = createStyles((theme) => ({
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: theme.colors.violet[9],
+        backgroundImage: theme.fn.linearGradient(145, theme.colors.violet[9], theme.colors.violet[4]),
     },
 
     links: {
@@ -59,7 +59,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 interface HeaderActionProps {
-    links: { link: string; label: string; }[];
+    links: { link: string; label: string; sublinks?: { label: string, link: string }[] }[];
 }
 
 export default function HeaderAction({ links }: HeaderActionProps) {
@@ -69,29 +69,28 @@ export default function HeaderAction({ links }: HeaderActionProps) {
     const pathname = usePathname();
 
     const items = links.map((link) => {
-        // const menuItems = link.links?.map((item) => (
-        //     <Menu.Item key={item.link}>{item.label}</Menu.Item>
-        // ));
+        const menuItems = link.sublinks?.map((item) => (
+            <Menu.Item key={item.link} onClick={() => router.push(item.link)}>{item.label}</Menu.Item>
+        ));
 
-        // if (menuItems) {
-        //     return (
-        //         <Menu key={link.label} trigger="hover" transitionProps={{ exitDuration: 0 }} withinPortal>
-        //             <Menu.Target>
-        //                 <a
-        //                     href={link.link}
-        //                     className={classes.link}
-        //                     onClick={(event) => event.preventDefault()}
-        //                 >
-        //                     <Center>
-        //                         <span className={classes.linkLabel}>{link.label}</span>
-        //                         <IconChevronDown size={rem(12)} stroke={1.5} />
-        //                     </Center>
-        //                 </a>
-        //             </Menu.Target>
-        //             <Menu.Dropdown>{menuItems}</Menu.Dropdown>
-        //         </Menu>
-        //     );
-        // }
+        if (menuItems) {
+            return (
+                <Menu key={link.label} trigger="hover" transitionProps={{ exitDuration: 0 }} withinPortal>
+                    <Menu.Target>
+                        <div
+                            className={classes.link}
+                            onClick={() => router.push(link.link)}
+                        >
+                            <Center>
+                                <span className={classes.linkLabel}><strong>{link.label}</strong></span>
+                                <IconChevronDown size={rem(12)} stroke={1.5} />
+                            </Center>
+                        </div>
+                    </Menu.Target>
+                    <Menu.Dropdown>{menuItems}</Menu.Dropdown>
+                </Menu>
+            );
+        }
 
         return (
             <div
@@ -113,7 +112,9 @@ export default function HeaderAction({ links }: HeaderActionProps) {
                 <Group spacing={5} className={classes.links}>
                     {items}
                 </Group>
-                <Button radius="xl" h={40} px={30} variant="gradient" gradient={{ from: "grape", to: "violet" }}>
+                <Button radius="xl" h={40} px={30} onClick={() => router.push("/donate")}
+                    gradient={{ from: "grape", to: "violet" }} variant="gradient"
+                >
                     Donate Now
                 </Button>
             </Container>

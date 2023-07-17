@@ -24,7 +24,10 @@ const links = [
   { link: '/events', label: 'Events' },
   { link: '/products', label: 'Products' },
   { link: '/about', label: 'About Us' },
-  { link: '/help', label: 'How to Help' },
+  { link: '/help', label: 'How to Help', sublinks: [
+    { label: "Sponsor a Family", link: "/help/sponsor" },
+    { label: "Become a Volunteer", link: "/help/volunteer" },
+  ] },
 ]
 
 const customTheme: MantineThemeOverride = {
