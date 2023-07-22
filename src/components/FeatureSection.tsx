@@ -13,7 +13,9 @@ import {
     Container,
     rem,
     ThemeIcon,
+    Divider,
 } from '@mantine/core';
+import { useCallback } from "react";
 
 const featuresData = [
     {
@@ -122,25 +124,26 @@ export default function FeatureSection() {
         </Card>
     ));
 
+    const ExploreBadge = useCallback(() => (<Badge variant="gradient" gradient={{ from: 'violet', to: 'lightblue' }} size="lg">
+        Explore
+    </Badge>), [])
+
     return (
-        <Container size="lg" py="xl">
-            <Group position="center">
-                <Badge variant="gradient" gradient={{ from: 'violet', to: 'lightblue' }} size="lg">
-                    Explore
-                </Badge>
-            </Group>
+        <>
+            <Divider my="xs" label={<ExploreBadge/>} labelPosition="center" />
+            <Container size="lg" py="xl">
+                <Title order={2} className={classes.title} ta="center" mt="sm">
+                    Our Features
+                </Title>
 
-            <Title order={2} className={classes.title} ta="center" mt="sm">
-                Our Features
-            </Title>
+                <Text c="dimmed" className={classes.description} ta="center" mt="md">
+                    Discover how we empower communities and preserve traditions.
+                </Text>
 
-            <Text c="dimmed" className={classes.description} ta="center" mt="md">
-                Discover how we empower communities and preserve traditions.
-            </Text>
-
-            <SimpleGrid cols={3} spacing="xl" mt={50} breakpoints={[{ maxWidth: 'md', cols: 2 }, { maxWidth: 'sm', cols: 1 }]}>
-                {features}
-            </SimpleGrid>
-        </Container>
+                <SimpleGrid cols={3} spacing="xl" mt={50} breakpoints={[{ maxWidth: 'md', cols: 2 }, { maxWidth: 'sm', cols: 1 }]}>
+                    {features}
+                </SimpleGrid>
+            </Container>
+        </>
     );
 }

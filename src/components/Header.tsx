@@ -21,7 +21,8 @@ const useStyles = createStyles((theme) => ({
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundImage: theme.fn.linearGradient(145, theme.colors.violet[9], theme.colors.violet[4]),
+        // backgroundImage: theme.fn.linearGradient(145, theme.colors.indigo[9], theme.colors.blue[9]),
+        backgroundColor: "#03045E"
     },
 
     links: {
@@ -68,6 +69,10 @@ export default function HeaderAction({ links }: HeaderActionProps) {
     const router = useRouter();
     const pathname = usePathname();
 
+    const menuItems = links.map((link) => (
+        <Menu.Item className='w-48' key={link.link} onClick={() => router.push(link.link)}>{link.label}</Menu.Item>
+    ))
+
     const items = links.map((link) => {
         const menuItems = link.sublinks?.map((item) => (
             <Menu.Item key={item.link} onClick={() => router.push(item.link)}>{item.label}</Menu.Item>
@@ -106,9 +111,16 @@ export default function HeaderAction({ links }: HeaderActionProps) {
     return (
         <Header height={HEADER_HEIGHT} sx={{ borderBottom: 0 }}>
             <Container className={classes.inner} fluid>
-                <Group>
-                    <Burger opened={opened} onClick={toggle} className={classes.burger} size="sm" />
-                </Group>
+                <Menu opened={opened} onClose={toggle}>
+                    <Menu.Target>
+                        <Group>
+                            <Burger opened={opened} onClick={toggle} className={classes.burger} size="sm" />
+                        </Group>
+                    </Menu.Target>
+                    <Menu.Dropdown>
+                        {menuItems}
+                    </Menu.Dropdown>
+                </Menu>
                 <Group spacing={5} className={classes.links}>
                     {items}
                 </Group>

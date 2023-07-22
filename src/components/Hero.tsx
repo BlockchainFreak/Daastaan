@@ -1,14 +1,19 @@
-import { createStyles, Overlay, Container, Title, Button, Text, rem } from '@mantine/core';
+import Image from 'next/image';
+import { createStyles, Overlay, Container, Title, Button, Text, rem, SimpleGrid, Grid } from '@mantine/core';
+import { Carousel, useAnimationOffsetEffect, Embla } from '@mantine/carousel';
+import Autoplay from 'embla-carousel-autoplay';
+import { useRef } from 'react';
+import { useElementSize } from '@mantine/hooks';
 
 const useStyles = createStyles((theme) => ({
     hero: {
         position: 'relative',
-        backgroundImage:
-            'url(chughis/22.jpg)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        display: "flex",
-        justifyContent: "flex-start",
+        // backgroundImage:
+        //     'url(chughis/22.jpg)',
+        // backgroundSize: 'cover',
+        // backgroundPosition: 'center',
+        // display: "flex",
+        // justifyContent: "flex-start",
     },
 
     container: {
@@ -56,6 +61,7 @@ const useStyles = createStyles((theme) => ({
 
     control: {
         marginTop: `calc(${theme.spacing.xl} * 1.5)`,
+        width: 200,
 
         [theme.fn.smallerThan('sm')]: {
             width: '100%',
@@ -63,26 +69,51 @@ const useStyles = createStyles((theme) => ({
     },
 }));
 
+const images = Array.from({ length: 50 }, (_, i) => i + 1)
+
 export default function HeroContentLeft() {
     const { classes } = useStyles();
+    const { ref, width } = useElementSize()
+    const autoplay = useRef(Autoplay({ delay: 1500 }));
 
     return (
-        <div className={classes.hero}>
-            <Overlay
-                gradient="linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, .65) 40%)"
-                opacity={1}
-                zIndex={0}
-            />
-            <Container className={classes.container}>
-                <Title className={classes.title}>Preserving Tradition, Empowering Communities</Title>
-                <Text className={classes.description} size="xl" mt="xl">
-                    Welcome to Daastan, where we celebrate the artistry of local nomadic artisans and support their livelihoods through sustainable practices. At Daastan, we also believe in the transformative power of creativity and its ability to shape lives!
-                </Text>
+        <Grid mb="lg">
+            <Grid.Col xs={12} md={5}>
+                <Container className="justify-center flex flex-col p-12">
+                    <Title className={classes.title}>Preserving Tradition, Empowering Communities</Title>
+                    <Text className={classes.description} size="xl" mt="xl">
+                        Welcome to Daastan, where we celebrate the artistry of local nomadic artisans and support their livelihoods through sustainable practices. At Daastan, we also believe in the transformative power of creativity and its ability to shape lives!
+                    </Text>
 
-                <Button variant="gradient" gradient={{ from: "grape", to: "violet" }} size="xl" radius="xl" className={classes.control}>
-                    Support Now
-                </Button>
-            </Container>
-        </div>
+                    <Button variant="gradient" gradient={{ from: "grape", to: "violet" }} size="xl" radius="xl" className={classes.control}>
+                        Support Now
+                    </Button>
+                </Container>
+            </Grid.Col>
+            <Grid.Col xs={12} md={7}>
+                <Carousel
+                    ref={ref}
+                    slideGap="md"
+                    loop
+                    align="start"
+                    plugins={[autoplay.current] as any}
+                    onMouseEnter={autoplay.current.stop}
+                    onMouseLeave={autoplay.current.reset}
+                >
+                    {
+                        images.map((prod) => (
+                            <Carousel.Slide key={prod}>
+                                <Image
+                                    alt="ss"
+                                    src={`/craftworkshopattaleemsubkailiyeschool/${prod}.jpg`}
+                                    width={width}
+                                    height={width / 1.4}
+                                />
+                            </Carousel.Slide>
+                        ))
+                    }
+                </Carousel>
+            </Grid.Col>
+        </Grid>
     );
 }

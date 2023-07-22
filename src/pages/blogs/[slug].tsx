@@ -47,7 +47,7 @@ export default function BlogPage({ fields, publishedDate }: InferGetStaticPropsT
                 height={width * imgheight/imgwidth}
             />
             <Text italic>Published on {new Date(publishedDate).toLocaleString()}</Text>
-            <div dangerouslySetInnerHTML={{ "__html": htmlStr }} />
+            <div dangerouslySetInnerHTML={{ "__html": htmlStr }} className="text-justify"/>
             <div className="flex flex-row gap-2 items-center flex-wrap">
                 <span>Tags: {'  '}</span>
                 {(fields?.tags as string[]).map((tag, index) => (

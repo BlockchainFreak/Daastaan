@@ -1,14 +1,23 @@
-import { Container, Title, Text } from '@mantine/core'
+import { Container, Title, Text, Center, Button } from '@mantine/core'
+import { useRouter } from 'next/navigation'
 
 const fontFamily = "font-mono"
 
 export default function VolunteerPage() {
+
+  const router = useRouter()
+
   return (
     <div className="p-8">
         <Container className="flex flex-col gap-4 bg-zinc-800 p-12 rounded-3xl shadow-xl">
         <Title className={fontFamily} order={1}>Become a Volunteer Program</Title>
         <Text className={fontFamily}>{`At Daastan, we believe in the power of community and the impact that individuals can make when they come together for a common cause. Our "Become a Volunteer Program" offers a unique opportunity for passionate individuals to contribute their time, skills, and energy towards empowering local nomadic artisans and fostering creativity in children. Join us in our mission to preserve tradition and empower communities in Multan and Lahore!`}</Text>
         
+        <Center>
+          <Button onClick={() => router.push("/help/form")} variant='gradient'>
+            Click Here to fill Volunteer Form
+          </Button>
+        </Center>
         <Title className={fontFamily} order={2}>1. Application Process:</Title>
         <Text className={fontFamily}>{`To become a volunteer, interested individuals can start by filling out an online application form available on our website. The form will require basic personal information, contact details, and a brief statement explaining their motivation to volunteer with Daastan.`}</Text>
 

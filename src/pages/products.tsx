@@ -5,20 +5,20 @@ import Image from 'next/image'
 const prods = ['2horses.jpg', 'canbox.jpg', 'drawer.jpg', 'elephant.jpg', 'envelope.jpg', 'handfan.jpg', 'handfan2.jpg', 'hookah.jpg', 'horse.jpg', 'tissue-box.jpg', 'trojan-onbox.jpg', 'trojan.jpg', 'wristlet-box.jpg', 'wristlets.jpg']
 
 const products = [
-    { name: '2 Horses', img: '2horses.jpg' },
-    { name: 'Can Box', img: 'canbox.jpg' },
-    { name: 'Drawer', img: 'drawer.jpg' },
+    { name: 'Miniature Decorative Horses', img: '2horses.jpg' },
+    { name: 'Pencil Box', img: 'canbox.jpg' },
+    { name: 'Hand Held Fan', img: 'handfan3.jpg' },
     { name: 'Elephant', img: 'elephant.jpg' },
     { name: 'Envelope', img: 'envelope.jpg' },
     { name: 'Hand Fan', img: 'handfan.jpg' },
-    { name: 'Hand Fan', img: 'handfan2.jpg' },
+    { name: 'Dry Fruit Tray', img: 'handfan2.jpg' },
     { name: 'Hookah', img: 'hookah.jpg' },
     { name: 'Horse', img: 'horse.jpg' },
     { name: 'Tissue Box', img: 'tissue-box.jpg' },
-    { name: 'Trojan On Box', img: 'trojan-onbox.jpg' },
-    { name: 'Trojan', img: 'trojan.jpg' },
-    { name: 'Bangles Box (Churiyan)', img: 'wristlet-box.jpg' },
-    { name: 'Churiyan - چوریاں', img: 'wristlets.jpg' },
+    { name: 'Miniature Decorative Horse', img: 'trojan-onbox.jpg' },
+    { name: 'Gugu Ghora', img: 'trojan.jpg' },
+    { name: 'Bangle Box (Churiyan)', img: 'wristlet-box.jpg' },
+    { name: 'Bangle Box (Churiyan)', img: 'wristlets.jpg' },
 ]
 
 export default function ProductsPage() {
