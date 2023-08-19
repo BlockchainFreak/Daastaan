@@ -86,7 +86,8 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
         props: {
             publishedDate: entry.sys.createdAt,
             fields: entry.fields
-        }
+        },
+        revalidate: 1
     }
 }
 
