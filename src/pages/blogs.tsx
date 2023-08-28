@@ -20,7 +20,7 @@ type BlogPostSkeleton = {
 
 export default function BlogsPage({ blogs }: InferGetStaticPropsType<typeof getStaticProps>) {
     return (
-        <Container className="my-12">
+        <Container className="py-12" size="lg">
             <Grid>
                 {blogs.map(blog => (
                     <Grid.Col key={blog.slug} md={6} lg={4} className='flex justify-center'>
@@ -51,10 +51,10 @@ const Blogs = ({ slug, url, date, title, tags }: BlogProps) => {
     return (
         <Card ref={ref} style={{ maxWidth: '320px' }}
             onClick={() => router.push(`/blogs/${slug}`)}
-            className="flex flex-col gap-2 p-4 transition-all duration-150 ease-in card hover:scale-105 hover:shadow-xl rounded-lg cursor-pointer"
+            className="flex flex-col gap-2 p-4 transition-all duration-150 ease-in card hover:scale-105 hover:shadow-xl rounded-lg cursor-pointer bg-violet-950"
         >
             <Image alt={""} src={url} width={width} height={200} />
-            <Text color='gray.6' fw={700}>{fdate}</Text>
+            <Text color='violet.2' fw={700}>{fdate}</Text>
             <Title order={4}>{title}</Title>
             <div className="flex items-center flex-wrap">
                 {tags.map((tag, index) => (

@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import {
     createStyles,
     Menu,
@@ -121,6 +122,12 @@ export default function HeaderAction({ links }: HeaderActionProps) {
                         {menuItems}
                     </Menu.Dropdown>
                 </Menu>
+                <Image
+                    alt="Daastan Logo"
+                    src="/logo.svg"
+                    width={150}
+                    height={150}
+                />
                 <Group spacing={5} className={classes.links}>
                     {items}
                 </Group>

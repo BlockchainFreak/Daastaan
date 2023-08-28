@@ -1,17 +1,31 @@
 import { Container, ThemeIcon } from "@mantine/core"
-import { IconSun, IconPhone, IconMapPin, IconAt, TablerIconsProps } from '@tabler/icons-react';
+import { IconSun, IconPhone, IconMapPin, IconAt, TablerIconsProps, IconBrandInstagram, IconBrandFacebook } from '@tabler/icons-react';
+import Link from "next/link";
 
 export default function AboutPage() {
 
-
     return (
         <div className="p-8">
-            <Container className="p-4 flex flex-col rounded-lg bg-gradient-to-tr from-purple-700 to-indigo-700">
+            <Container className="p-4 flex flex-col rounded-lg bg-gradient-to-tr from-purple-900 to-indigo-900">
                 <ContactField
                     Icon={IconAt}
                     title="Email"
-                    content="daastaan@mail.com"
+                    content="daastaan913@gmail.com"
                 />
+                <Link href="https://www.instagram.com/daastan.00/" className="no-underline text-white" rel="noopener noreferrer" target="_blank">
+                    <ContactField
+                        Icon={IconBrandInstagram}
+                        title="Instagram"
+                        content="@daastan.00"
+                    />
+                </Link>
+                <Link href="https://www.facebook.com/profile.php?id=100093611552573" className="no-underline text-white" rel="noopener noreferrer" target="_blank">
+                    <ContactField
+                        Icon={IconBrandFacebook}
+                        title="Facebook"
+                        content="@Daastan"
+                    />
+                </Link>
                 <ContactField
                     Icon={IconSun}
                     title="Working Hours"
@@ -19,13 +33,23 @@ export default function AboutPage() {
                 />
                 <ContactField
                     Icon={IconPhone}
-                    title="Phone"
-                    content="+92 1234567890"
+                    title="Ahmed Hassan Faiz Chadhar (General Secretary/Co-Founder)"
+                    content="+92 331 3773929"
+                />
+                <ContactField
+                    Icon={IconPhone}
+                    title="Haider Nafees Ahmed (President/Co-Founder)"
+                    content="+92 324 4923575"
+                />
+                <ContactField
+                    Icon={IconPhone}
+                    title="Ibrahim Bajwa (Director/Youth Mobilization)"
+                    content="+92 300 9482234"
                 />
                 <ContactField
                     Icon={IconMapPin}
                     title="Address"
-                    content="Street 123, City, Country"
+                    content="House no. 152-B, Street 4, Cavalry Ground, Lahore Cantt."
                 />
             </Container>
         </div>

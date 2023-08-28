@@ -1,9 +1,11 @@
 import Image from 'next/image';
-import { createStyles, Overlay, Container, Title, Button, Text, rem, SimpleGrid, Grid } from '@mantine/core';
+import { createStyles, Overlay, Container, Title, Button, Text, rem, SimpleGrid, Grid, Group, Flex } from '@mantine/core';
 import { Carousel, useAnimationOffsetEffect, Embla } from '@mantine/carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import { useRef } from 'react';
 import { useElementSize } from '@mantine/hooks';
+import { IconBrandFacebook, IconBrandInstagram } from '@tabler/icons-react';
+import Link from 'next/link';
 
 const useStyles = createStyles((theme) => ({
     hero: {
@@ -80,6 +82,14 @@ export default function HeroContentLeft() {
         <Grid mb="lg">
             <Grid.Col xs={12} md={5}>
                 <Container className="justify-center flex flex-col p-12">
+                    <div className='flex justify-between bg-zinc-950 p-2 w-[7rem] rounded-xl absolute top-24'>
+                        <Link href="https://www.instagram.com/daastan.00/" className="grid place-content-center hover:bg-zinc-600 p-2 rounded-lg no-underline text-white" rel="noopener noreferrer" target="_blank">
+                            <IconBrandInstagram />
+                        </Link>
+                        <Link href="https://www.facebook.com/profile.php?id=100093611552573" className="grid place-content-center hover:bg-zinc-600 p-2 rounded-lg no-underline text-white" rel="noopener noreferrer" target="_blank">
+                            <IconBrandFacebook />
+                        </Link>
+                    </div>
                     <Title className={classes.title}>Preserving Tradition, Empowering Communities</Title>
                     <Text className={classes.description} size="xl" mt="xl">
                         Welcome to Daastan, where we celebrate the artistry of local nomadic artisans and support their livelihoods through sustainable practices. At Daastan, we also believe in the transformative power of creativity and its ability to shape lives!

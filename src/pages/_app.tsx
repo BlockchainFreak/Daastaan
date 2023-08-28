@@ -18,16 +18,18 @@ import { MantineProvider, type MantineThemeOverride } from '@mantine/core'
 
 const links = [
   { link: '/', label: 'Home' },
-  { link: '/blogs', label: 'Blogs' },
-  { link: '/stories', label: 'Success Stories' },
-  { link: '/testimonials', label: 'Testimonials' },
-  { link: '/events', label: 'Events' },
   { link: '/products', label: 'Products' },
-  { link: '/about', label: 'About Us' },
-  { link: '/help', label: 'How to Help', sublinks: [
-    { label: "Sponsor a Family", link: "/help/sponsor" },
-    { label: "Become a Volunteer", link: "/help/volunteer" },
-  ] },
+  { link: '/events', label: 'Events' },
+  { link: '/testimonials', label: 'Testimonials' },
+  { link: '/team', label: 'Our Team' },
+  { link: '/blogs', label: 'Blogs' },
+  {
+    link: '/help', label: 'How to Help', sublinks: [
+      { label: "Sponsor a Family", link: "/help/sponsor" },
+      { label: "Become a Volunteer", link: "/help/volunteer" },
+    ]
+  },
+  { link: '/about', label: 'Contact Us' },
 ]
 
 const customTheme: MantineThemeOverride = {
@@ -37,9 +39,9 @@ const customTheme: MantineThemeOverride = {
     // Primary Shades
     deepBlue: ["#05014a", "#020079", "#0006b1", "#0013de", "#0021f3"],
     radiantOrange: ["#ff9c00", "#fe8800", "#ff5503", "#ce0a18", "#e12426"],
-    brightPink: [ "#FFC1E1", "#FF69B4", "#FF1493", "#C71585", "#8B008B"],
+    brightPink: ["#FFC1E1", "#FF69B4", "#FF1493", "#C71585", "#8B008B"],
 
-    
+
   }
 }
 
@@ -48,7 +50,9 @@ export default function App({ Component, pageProps }: AppProps) {
     <MantineProvider theme={customTheme} withGlobalStyles withNormalizeCSS>
       <RecoilRoot>
         <HeaderAction links={links} />
-        <Component {...pageProps} />
+        <main className="h-full py-8">
+          <Component {...pageProps} />
+        </main>
       </RecoilRoot>
     </MantineProvider>
   )

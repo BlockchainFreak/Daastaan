@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import { Container, Grid, Flex, Center, Button } from '@mantine/core'
 import Image from 'next/image'
+import { EntryFieldTypes, createClient } from 'contentful'
+import { InferGetStaticPropsType } from 'next'
 
 const prods = ['2horses.jpg', 'canbox.jpg', 'drawer.jpg', 'elephant.jpg', 'envelope.jpg', 'handfan.jpg', 'handfan2.jpg', 'hookah.jpg', 'horse.jpg', 'tissue-box.jpg', 'trojan-onbox.jpg', 'trojan.jpg', 'wristlet-box.jpg', 'wristlets.jpg']
 
@@ -21,11 +23,20 @@ const products = [
     { name: 'Bangle Box (Churiyan)', img: 'wristlets.jpg' },
 ]
 
-export default function ProductsPage() {
+type ProductSkeleton = {
+    contentTypeId: "product",
+    fields: {
+        name: EntryFieldTypes.Text,
+        image: EntryFieldTypes.AssetLink,
+        price?: EntryFieldTypes.Number,
+    }
+}
+
+export default function ProductsPage({ products }: InferGetStaticPropsType<typeof getStaticProps>) {
 
 
     return (
-        <Container className="my-8">
+        <Container className="py-8">
 
             <Center className="justify-center flex flex-col mb-12">
                 <h3>
@@ -42,7 +53,7 @@ export default function ProductsPage() {
                 {products.map((prod, index) => (
                     <Grid.Col key={index} md={6} lg={4} className='flex justify-center'>
                         <div className='p-4 flex flex-col gap-4 transition-all duration-150 ease-in card hover:scale-105 hover:shadow-xl rounded-lg cursor-pointer' style={{ backgroundColor: "#25262b" }}>
-                            <img alt={prod.name} src={`/products/${prod.img}`} width={250} />
+                            <img alt={prod.name} src={`/products/${prod.image}`} width={250} />
                             <h3>{prod.name}</h3>
                         </div>
                     </Grid.Col>
@@ -50,4 +61,22 @@ export default function ProductsPage() {
             </Grid>
         </Container>
     )
+}
+
+
+export async function getStaticProps() {
+    const client = createClient({
+        space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID ?? "",
+        accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN ?? ""
+    });
+
+    const entries = await client.withoutUnresolvableLinks.getEntries<ProductSkeleton>({ 'content_type': 'product' });
+    const products = entries.items.map(item => item.fields);
+
+    return {
+        props: {
+            products
+        },
+        revalidate: 1
+    }
 }

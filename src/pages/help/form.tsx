@@ -64,7 +64,7 @@ export default function FormPage() {
     }
 
     return (
-        <Container my={20} className="p-12 flex flex-col gap-4 bg-zinc-800 rounded-3xl">
+        <Container className="py-12 flex flex-col gap-4 bg-zinc-800 rounded-3xl">
             <Title order={1}>Volunteer Form</Title>
             <SimpleGrid cols={2}>
                 <TextInput
@@ -92,7 +92,7 @@ export default function FormPage() {
                 <Autocomplete
                     label="Country"
                     data={countires}
-                    placeholder="Select your country"
+                    placeholder="Enter your country"
                     required
                     variant="filled"
                     className="mb-4"

@@ -11,7 +11,7 @@ export default function HelpPage() {
     const router = useRouter()
 
     return (
-        <Container className='my-8'>
+        <Container className='py-8'>
             <Grid gutter="lg">
                 <Grid.Col md={12} lg={6} className='flex justify-center' onClick={() => router.push('/help/volunteer')}>
                     <HelpCard

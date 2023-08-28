@@ -14,12 +14,12 @@ import FeatureSection from '@/components/FeatureSection'
 
 export default function Home() {
   return (
-    <main
+    <div
       className={`flex min-h-screen flex-col justify-center`}
     >
       <Hero />
       <FeatureSection />
-      {/* <Carousel /> */}
-    </main>
+      <Carousel />
+    </div>
   )
 }
