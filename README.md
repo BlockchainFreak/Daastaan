@@ -65,25 +65,16 @@ The content will be organized into the following sections:
 IV. Themes and Colors
 The website will have a modern and clean look, with a primary color scheme of [example: blue and white] and secondary accents of [example: gray]. The font will be easy-to-read and professional, such as [example: Roboto or Arial].
 
-V. Additional Elements
-1. Social Media Integration
-   - Social media icons and links to the NGO's Facebook, Twitter, and Instagram pages
-   - Option for visitors to share website content on their social media accounts
 
-2. Newsletter Subscription
-   - A form for visitors to subscribe to the NGO's email newsletter for updates and news
 
-3. Contact Form
-   - A form for visitors to get in touch with the NGO for questions, feedback, or inquiries
+### Event order
 
-4. SEO Optimization
-   - Relevant keywords and metadata will be used throughout the site to ensure high search engine visibility
-
-5. Responsive Design
-   - The website will be fully responsive, ensuring a seamless experience on desktop, tablet, and mobile devices
-
-6. Analytics
-   - Integration with Google Analytics or other analytics tools to track website visitors, user behavior, and performance
-
-7. Security
-   - SSL certificate and other security measures to protect user data and ensure a secure online experience
+Order|Event Name|Content Available|
+---|-----|----|
+1.|  Trip to Jhugis (Ladies) | YES |
+2.|  Dhachi fair | NO |
+3.|  Taleem sub kay liye| YES |
+4.|  Blue fair| NO |
+5.|  Visit to dream/Special Children school| YES |
+6.|  Lahore Craft fair| YES |
+7.|  Tree plantaion| YES |

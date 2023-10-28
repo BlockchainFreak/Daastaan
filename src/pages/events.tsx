@@ -6,13 +6,14 @@ import { InferGetStaticPropsType } from 'next'
 import { useRouter } from 'next/router'
 import React from 'react'
 
-type EventsSkeleton = {
+type EventPostSkeleton = {
   contentTypeId: "event"
   fields: {
     title: EntryFieldTypes.Text,
     cover: EntryFieldTypes.AssetLink,
     description: EntryFieldTypes.RichText,
     date: EntryFieldTypes.Date,
+    order: EntryFieldTypes.Number
   }
 }
 
@@ -50,7 +51,7 @@ const Event = ({ slug, date, title, cover }: EventProps) => {
 
   return (
     <Card ref={ref} style={{ maxWidth: '320px' }}
-      onClick={() => router.push(`/blogs/${slug}`)}
+      onClick={() => router.push(`/events/${slug}`)}
       className="flex flex-col gap-2 p-4 transition-all duration-150 ease-in card hover:scale-105 hover:shadow-xl rounded-lg cursor-pointer bg-violet-950"
     >
       {
@@ -75,14 +76,16 @@ export async function getStaticProps() {
     accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN ?? ""
   });
 
-  const entries = await client.withoutUnresolvableLinks.getEntries<EventsSkeleton>({ 'content_type': 'event' });
-  const events = entries.items.map(item => ({
-    slug: item.sys.id,
-    cover: item.fields.cover?.fields.file,
-    title: item.fields.title,
-    date: item.fields.date as string,
-  }))
-  .sort((a,b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+  const entries = await client.withoutUnresolvableLinks.getEntries<EventPostSkeleton>({ 'content_type': 'event' });
+  const events = entries.items
+    .sort((a, b) => a.fields.order - b.fields.order)
+    .map(item => ({
+      slug: item.sys.id,
+      cover: item.fields.cover?.fields.file,
+      title: item.fields.title,
+      description: item.fields.description ?? "",
+      date: item.fields.date as string,
+    }))
 
   return {
     props: {

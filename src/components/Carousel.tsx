@@ -21,7 +21,7 @@ export default function CarouselsComp() {
 
     return (
         <Box>
-            <Box className='m-16 p-8 rounded-xl bg-gradient-to-br  from-indigo-900 to-purple-500' >
+            {/* <Box className='m-16 p-8 rounded-xl bg-gradient-to-br  from-indigo-900 to-purple-500' >
                 <div className='relative'>
                     <Title className='relative bottom-4' order={2}>Products</Title>
                 </div>
@@ -78,21 +78,21 @@ export default function CarouselsComp() {
                         </Carousel>
                     </Grid.Col>
                 </Grid>
-            </Box>
-            <Box className='m-16 p-8 rounded-xl bg-gradient-to-br from-indigo-900 to-purple-500' >
-                <Title className='text-3xl'>Chughi</Title>
+            </Box> */}
+            <Box className='m-16 p-8 gap-4 flex flex-col rounded-xl bg-gradient-to-br from-indigo-900 to-purple-500' >
+                <Title className='text-3xl'>Jhughi</Title>
                 <Carousel
                     ref={ref}
                     withIndicators
                     height={300}
-                    slideSize="33.333333%"
+                    slideSize={width < 450 ? '100%' : '33.333333%'}
                     slideGap="md"
                     loop
                     align="start"
                     slidesToScroll={3}
-                // plugins={[autoplay2.current] as any}
-                // onMouseEnter={autoplay2.current.stop}
-                // onMouseLeave={autoplay2.current.reset}
+                plugins={[autoplay2.current] as any}
+                onMouseEnter={autoplay2.current.stop}
+                onMouseLeave={autoplay2.current.reset}
                 >
                     {
                         indices.map((_, index) => (
@@ -100,8 +100,8 @@ export default function CarouselsComp() {
                                 <Image
                                     alt="ss"
                                     src={`/chughis/${index + 1}.jpg`}
-                                    width={width / 3}
-                                    height={width / 4}
+                                    width={width > 450 ? width / 3 : width }
+                                    height={width > 450 ? width / 4 : width/1.4 }
                                 />
                             </Carousel.Slide>
                         ))
